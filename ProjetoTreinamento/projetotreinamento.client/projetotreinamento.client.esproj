@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.3864779">
+  <PropertyGroup>
+    <StartupCommand>npm start</StartupCommand>
+    <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
+    <!-- Allows the build (or compile) script located on package.json to run on Build -->
+    <ShouldRunBuildScript>false</ShouldRunBuildScript>
+    <!-- Folder where production build objects will be placed -->
+    <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\projetotreinamento.client\browser\</BuildOutputFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="NovaPasta1\**" />
+    <None Remove="NovaPasta\**" />
+    <TypeScriptConfiguration Remove="NovaPasta1\**" />
+    <TypeScriptConfiguration Remove="NovaPasta\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\app\Environments\" />
+    <Folder Include="src\app\Services\" />
+  </ItemGroup>
+</Project>

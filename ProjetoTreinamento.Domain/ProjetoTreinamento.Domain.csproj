@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProjetoTreinamento.CrossCutting.Exception\ProjetoTreinamento.CrossCutting.Exceptions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\Tarefas\Validacoes\" />
+  </ItemGroup>
+
+</Project>
