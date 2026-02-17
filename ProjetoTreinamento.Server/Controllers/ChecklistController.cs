@@ -24,10 +24,10 @@ public class ChecklistController : BaseController
             HttpStatusCode.Created
         );
 
-    [HttpDelete]
-    public async Task<IActionResult> DeleteChecklistAsync([FromBody] DeleteChecklistCommand request) =>
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteChecklistAsync([FromBody] int id) =>
         await GenerateResponseAsync(
-            async () => await MediatorService.Send(request),
+            async () => await MediatorService.Send(new DeleteChecklistCommand(id)),
             HttpStatusCode.OK
         );
 

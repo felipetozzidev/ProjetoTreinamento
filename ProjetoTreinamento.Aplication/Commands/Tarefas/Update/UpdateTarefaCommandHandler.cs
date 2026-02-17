@@ -15,9 +15,9 @@ internal class UpdateTarefaCommandHandler : IRequestHandler<UpdateTarefaCommand>
 
     public async Task Handle(UpdateTarefaCommand request, CancellationToken cancellationToken)
     {
-        Tarefa tarefa = await _tarefaRepository.GetByID(request.Id);
+        Tarefa tarefa = await _tarefaRepository.GetByIdAsync(request.Id);
         tarefa.AtualizarEntidadeTarefa(request.Titulo, request.Descricao, request.Prazo);
-        await _tarefaRepository.Update(tarefa);
+        await _tarefaRepository.UpdateAsync(tarefa);
     }
 
 }

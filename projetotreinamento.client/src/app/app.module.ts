@@ -11,6 +11,7 @@ import { AddTarefaButtonComponent } from './components/buttons/add-tarefa-button
 import { DefaultHeaderComponent } from './components/headers/default-header/default-header.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CardsBodyComponent } from './components/bodies/cards-body/cards-body.component';
+import { MarcarTarefaConcluidaComponent } from './components/buttons/marcar-tarefa-concluida/marcar-tarefa-concluida.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CardsBodyComponent } from './components/bodies/cards-body/cards-body.co
     AddTarefaButtonComponent,
     DefaultHeaderComponent,
     CardsBodyComponent,
+    MarcarTarefaConcluidaComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule,

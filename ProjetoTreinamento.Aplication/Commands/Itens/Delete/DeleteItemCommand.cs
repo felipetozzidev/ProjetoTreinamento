@@ -6,9 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace ProjetoTreinamento.Application.Commands.Itens.Delete
 {
-    public class DeleteItemCommand : IRequest
+    public class DeleteItemCommand(int id) : IRequest
     {
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public int Id { get; set; } = id;
     }
 }

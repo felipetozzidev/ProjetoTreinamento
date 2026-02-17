@@ -16,7 +16,7 @@ internal class AddChecklistCommandHandler : IRequestHandler<AddChecklistCommand>
     public async Task Handle(AddChecklistCommand request, CancellationToken cancellationToken)
     {
         var checklistEtntity = ConstroiChecklistentity(request);
-        await _checklistRepository.Add(checklistEtntity);
+        await _checklistRepository.AddAsync(checklistEtntity);
     }
 
     public static Checklist ConstroiChecklistentity(AddChecklistCommand request) =>

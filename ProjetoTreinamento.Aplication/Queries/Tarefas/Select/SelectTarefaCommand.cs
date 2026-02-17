@@ -3,8 +3,8 @@ using System.Text.Json.Serialization;
 
 namespace ProjetoTreinamento.Application.Queries.Tarefas.Select;
 
-public class SelectTarefaCommand : IRequest
+public class SelectTarefaCommand(int id) : IRequest
 {
     [JsonPropertyName("id")]
-    public int Id { get; set; }
+    public int Id { get; set; } = id;
 }

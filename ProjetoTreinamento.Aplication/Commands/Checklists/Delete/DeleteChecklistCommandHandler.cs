@@ -14,7 +14,7 @@ public class DeleteChecklistCommandHandler : IRequestHandler<DeleteChecklistComm
 
     public async Task Handle(DeleteChecklistCommand request, CancellationToken cancellationToken)
     {
-        Checklist checklist = await _checklistRepository.GetByID(request.Id);
-        await _checklistRepository.Delete(checklist);
+        Checklist checklist = await _checklistRepository.GetByIdAsync(request.Id);
+        await _checklistRepository.DeleteAsync(checklist);
     }
 }

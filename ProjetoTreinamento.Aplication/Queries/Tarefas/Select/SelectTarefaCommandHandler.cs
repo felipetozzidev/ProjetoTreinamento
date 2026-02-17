@@ -16,7 +16,7 @@ internal class SelectTarefaCommandHandler : IRequestHandler<SelectTarefaCommand>
 
     public async Task Handle(SelectTarefaCommand request, CancellationToken cancellationToken)
     {
-        Checklist checklist = await _tarefaRepository.GetByID(request.Id);
+        Checklist checklist = await _tarefaRepository.GetByIdAsync(request.Id);
 
     }
 }

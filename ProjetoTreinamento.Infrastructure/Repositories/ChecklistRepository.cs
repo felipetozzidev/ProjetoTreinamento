@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProjetoTreinamento.CrossCutting.Exceptions.CustomExeptions;
 using ProjetoTreinamento.Domain.Entities;
 using ProjetoTreinamento.Domain.Interfaces;
 using ProjetoTreinamento.Infrastructure.Contexts;
@@ -16,7 +17,7 @@ namespace ProjetoTreinamento.Infrastructure.Repositories
         public async Task<Checklist> GetByIdAsync(int id)
         {
             var checklistGet = await _context.Checklist.FirstOrDefaultAsync(c =>  c.Id == id);
-            return checklistGet == null ? throw new ;
+            return checklistGet == null ? throw new TarefaNotFoundException() : checklistGet;
         }
 
         public async Task AddAsync(Checklist checklist)
@@ -32,7 +33,7 @@ namespace ProjetoTreinamento.Infrastructure.Repositories
         }
 
 
-        public async Task Update(Checklist checklist)
+        public async Task UpdateAsync(Checklist checklist)
         {
             _context.Checklist.Update(checklist);
             await _context.SaveChangesAsync();

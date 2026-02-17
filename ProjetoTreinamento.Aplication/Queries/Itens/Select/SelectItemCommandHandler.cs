@@ -15,7 +15,7 @@ internal class SelectItemCommandHandler : IRequestHandler<SelectItemCommand>
 
     public async Task Handle(SelectItemCommand request, CancellationToken cancellationToken)
     {
-        Item item = await _itemRepository.GetByID(request.Id);
+        Item item = await _itemRepository.GetByIdAsync(request.Id);
 
     }
 }

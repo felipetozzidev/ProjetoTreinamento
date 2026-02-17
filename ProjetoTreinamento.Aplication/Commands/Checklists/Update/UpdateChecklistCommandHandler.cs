@@ -17,6 +17,6 @@ internal class UpdateChecklistCommandHandler : IRequestHandler<UpdateChecklistCo
     {
         Checklist checklist = await _checklistRepository.GetByIdAsync(request.Id);
         checklist.AtualizarEntidadeChecklist(request.Titulo, request.Descricao, request.IdTarefa);
-        await _checklistRepository.Update(checklist);
+        await _checklistRepository.UpdateAsync(checklist);
     }
 }

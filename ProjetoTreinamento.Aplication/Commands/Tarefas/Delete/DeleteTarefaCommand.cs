@@ -6,9 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace ProjetoTreinamento.Application.Commands.Tarefas.Delete
 {
-    public class DeleteTarefaCommand : IRequest
+    public class DeleteTarefaCommand(int id) : IRequest
     {
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public int Id { get; set; } = id;
     }
 }

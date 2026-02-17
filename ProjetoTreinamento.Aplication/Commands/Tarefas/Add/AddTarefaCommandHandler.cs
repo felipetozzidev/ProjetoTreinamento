@@ -18,7 +18,7 @@ public sealed class AddTarefaCommandHandler : IRequestHandler<AddTarefaCommand>
     {
         var tarefaEntity = ConstroiTarefaEntity(request);
 
-        await _tarefaRepository.Add(tarefaEntity);
+        await _tarefaRepository.AddAsync(tarefaEntity);
     }
 
     private static Tarefa ConstroiTarefaEntity(AddTarefaCommand request) =>

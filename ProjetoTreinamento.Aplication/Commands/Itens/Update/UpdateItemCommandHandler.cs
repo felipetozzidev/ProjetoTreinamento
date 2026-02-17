@@ -15,9 +15,9 @@ internal class UpdateItemCommandHandler : IRequestHandler<UpdateItemCommand>
 
     public async Task Handle(UpdateItemCommand request, CancellationToken cancellationToken)
     {
-        Item item = await _itemRepository.GetByID(request.Id);
+        Item item = await _itemRepository.GetByIdAsync(request.Id);
         item.AtualizarEntidadeItem(request.Titulo, request.IdTarefa, request.IdChecklist);
-        await _itemRepository.Update(item);
+        await _itemRepository.UpdateAsync(item);
     }
 
 }

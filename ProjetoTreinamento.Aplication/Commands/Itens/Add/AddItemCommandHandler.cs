@@ -20,7 +20,7 @@ internal class AddItemCommandHandler : IRequestHandler<AddItemCommand>
     public async Task Handle(AddItemCommand request, CancellationToken cancellationToken)
     {
         var itemEtntity = ConstroiItemEntity(request);
-        await _itemRepository.Add(itemEtntity);
+        await _itemRepository.AddAsync(itemEtntity);
     }
 
     public static Item ConstroiItemEntity(AddItemCommand request) =>

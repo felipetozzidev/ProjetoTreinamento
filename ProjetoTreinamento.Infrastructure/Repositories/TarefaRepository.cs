@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProjetoTreinamento.CrossCutting.Exceptions.CustomExeptions;
 using ProjetoTreinamento.Domain.Entities;
 using ProjetoTreinamento.Domain.Interfaces;
 using ProjetoTreinamento.Infrastructure.Contexts;
@@ -16,26 +17,26 @@ namespace ProjetoTreinamento.Infrastructure.Repositories
         {
             _context = context;
         }
-        public async Task<Tarefa> GetByID(int id)
+        public async Task<Tarefa> GetByIdAsync(int id)
         {
-            var TarefaGet = await _context.Tarefa.FirstOrDefaultAsync(c => c.Id == id);
-            return TarefaGet;
+            var tarefaGet = await _context.Tarefa.FirstOrDefaultAsync(c => c.Id == id);
+            return tarefaGet == null ? throw new TarefaNotFoundException() : tarefaGet;
         }
 
-        public async Task Add(Tarefa tarefa)
+        public async Task AddAsync(Tarefa tarefa)
         {
             _context.Tarefa.Add(tarefa);
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(Tarefa tarefa)
+        public async Task DeleteAsync(Tarefa tarefa)
         {
             _context.Tarefa.Remove(tarefa);
             await _context.SaveChangesAsync();
         }
 
 
-        public async Task Update(Tarefa tarefa)
+        public async Task UpdateAsync(Tarefa tarefa)
         {
             _context.Tarefa.Update(tarefa);
             await _context.SaveChangesAsync();

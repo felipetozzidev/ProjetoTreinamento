@@ -15,7 +15,7 @@ internal class SelectChecklistCommandHandler : IRequestHandler<SelectChecklistCo
 
     public async Task Handle(SelectChecklistCommand request, CancellationToken cancellationToken)
     {
-        Checklist checklist = await _checklistRepository.GetByID(request.Id);
+        Checklist checklist = await _checklistRepository.GetByIdAsync(request.Id);
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ProjetoTreinamento.CrossCutting.Exceptions;
+using ProjetoTreinamento.CrossCutting.Exceptions.CustomExeptions;
 using ProjetoTreinamento.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
@@ -30,11 +31,6 @@ public class Tarefa
     {
         if (Prazo < DateTime.Today)
             throw new TarefaNotFoundException();
-    }
-
-    public void ValidaDescricao()
-    {
-
     }
 
     public void AtualizarEntidadeTarefa(string titulo, string descricao, DateTime prazo)

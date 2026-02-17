@@ -15,7 +15,7 @@ internal class DeleteTarefaCommandHandler : IRequestHandler<DeleteTarefaCommand>
 
     public async Task Handle(DeleteTarefaCommand request, CancellationToken cancellationToken)
     {
-        Tarefa tarefa = await _tarefaRepository.GetByID(request.Id);
-        await _tarefaRepository.Delete(tarefa);
+        Tarefa tarefa = await _tarefaRepository.GetByIdAsync(request.Id);
+        await _tarefaRepository.DeleteAsync(tarefa);
     }
 }

@@ -16,7 +16,7 @@ internal class DeleteItemCommandHandler : IRequestHandler<DeleteItemCommand>
 
     public async Task Handle(DeleteItemCommand request, CancellationToken cancellationToken)
     {
-        Item item = await _itemRepository.GetByID(request.Id);
-        await _itemRepository.Delete(item);
+        Item item = await _itemRepository.GetByIdAsync(request.Id);
+        await _itemRepository.DeleteAsync(item);
     }
 }

@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using ProjetoTreinamento.Application.Commands.Itens.Add;
 using ProjetoTreinamento.Application.Commands.Itens.Delete;
 using ProjetoTreinamento.Application.Commands.Itens.Update;
+using ProjetoTreinamento.Application.Commands.Tarefas.Delete;
 using ProjetoTreinamento.Application.Queries.Checklists.Select;
+using ProjetoTreinamento.Application.Queries.Tarefas.Select;
 using ProjetoTreinamento.Server.Filters;
 using System.Net;
 
@@ -25,9 +27,9 @@ public class ItemController : BaseController
         );
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteTarefaAsync([FromBody] DeleteItemCommand request) =>
+    public async Task<IActionResult> DeleteTarefaAsync([FromBody] int id) =>
         await GenerateResponseAsync(
-            async () => await MediatorService.Send(request),
+            async () => await MediatorService.Send(new DeleteTarefaCommand(id)),
             HttpStatusCode.OK
         );
 
@@ -39,9 +41,9 @@ public class ItemController : BaseController
         );
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> SelectTarefaAsync([FromBody] SelectItemCommand request) =>
+    public async Task<IActionResult> SelectTarefaAsync([FromRoute] int id) =>
         await GenerateResponseAsync(
-            async () => await MediatorService.Send(request),
+            async () => await MediatorService.Send(new SelectTarefaCommand(id)),
             HttpStatusCode.Created
         );
 }
