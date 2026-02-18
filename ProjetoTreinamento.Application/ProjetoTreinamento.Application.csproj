@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ProjetoTreinamento.CrossCutting.Exception\ProjetoTreinamento.CrossCutting.Exceptions.csproj" />
-  </ItemGroup>
-
 </Project>

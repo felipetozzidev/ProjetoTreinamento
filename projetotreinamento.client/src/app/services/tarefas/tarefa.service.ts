@@ -11,7 +11,7 @@ export class TarefaService {
   constructor(private http: HttpClient) { }
 
   listTarefas(): Observable<TarefaType[]> {
-    return this.http.get<TarefaType[]>("api/TarefaController")
+    return this.http.get<TarefaType[]>("api/TarefaController/")
   }
 
   getTarefa(id: number): Observable<TarefaType> {

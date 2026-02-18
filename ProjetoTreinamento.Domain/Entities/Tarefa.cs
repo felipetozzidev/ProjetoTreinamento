@@ -1,6 +1,7 @@
 ﻿using ProjetoTreinamento.CrossCutting.Exceptions;
 using ProjetoTreinamento.CrossCutting.Exceptions.CustomExeptions;
 using ProjetoTreinamento.Domain.Enums;
+using ProjetoTreinamento.Domain.Shareds.Extensions;
 using System.ComponentModel.DataAnnotations;
 
 namespace ProjetoTreinamento.Domain.Entities;
@@ -12,9 +13,9 @@ public class Tarefa
     public string Titulo { get; private set; } = string.Empty;
     public string Descricao { get; private set; } = "Descricao Tarefa";
     public DateTime? Prazo { get; private set; }
-    public StatusTarefaEnum CodigoStatus { get; private set; }
+    public StatusTarefaEnum CodigoStatus { get; private set; } = StatusTarefaEnum.Pendente;
     public DateTime DataCriacao { get; private set; } = DateTime.Now;
-    public DateTime? ConcluidaEm { get; private set; }
+    //public DateTime? ConcluidaEm { get; private set; }
 
     public Tarefa(
         string titulo,
@@ -27,11 +28,16 @@ public class Tarefa
         Prazo = prazo;
     }
 
+    public void SetId(int id) => 
+        Id = id;
+
     public void ValidaPrazo()
     {
         if (Prazo < DateTime.Today)
             throw new TarefaNotFoundException();
     }
+    public string GetSituacao() => CodigoStatus.GetDescription();
+ 
 
     public void AtualizarEntidadeTarefa(string titulo, string descricao, DateTime prazo)
     {

@@ -13,7 +13,7 @@ namespace ProjetoTreinamento.Server.Controllers;
 [ApiController]
 public class ChecklistController : BaseController
 {
-    protected ChecklistController(
+    public ChecklistController(
         IMediator mediatorService
     ) : base(mediatorService) { }
 
@@ -41,7 +41,7 @@ public class ChecklistController : BaseController
     [HttpGet("{id}")]
     public async Task<IActionResult> SelectChecklistAsync([FromRoute] int id) =>
         await GenerateResponseAsync(
-            async () => await MediatorService.Send(new SelectChecklistCommand(id)),
+            async () => await MediatorService.Send(new SelectChecklistQuery(id)),
             HttpStatusCode.OK
         );
 }

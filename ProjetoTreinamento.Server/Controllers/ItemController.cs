@@ -15,7 +15,7 @@ namespace ProjetoTreinamento.Server.Controllers;
 [ApiController]
 public class ItemController : BaseController
 {
-    protected ItemController(
+    public ItemController(
         IMediator mediatorService
     ) : base(mediatorService) { }
 
@@ -43,7 +43,7 @@ public class ItemController : BaseController
     [HttpGet("{id}")]
     public async Task<IActionResult> SelectTarefaAsync([FromRoute] int id) =>
         await GenerateResponseAsync(
-            async () => await MediatorService.Send(new SelectTarefaCommand(id)),
+            async () => await MediatorService.Send(new SelectTarefaQuery(id)),
             HttpStatusCode.Created
         );
 }

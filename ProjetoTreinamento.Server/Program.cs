@@ -1,15 +1,42 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi;
+using ProjetoTreinamento.Application.Interfaces.Services;
+using ProjetoTreinamento.Application.MapperProfiles;
+using ProjetoTreinamento.Application.Queries.Tarefas.GetAll;
 using ProjetoTreinamento.CrossCutting.Models;
+using ProjetoTreinamento.Domain.Interfaces;
+using ProjetoTreinamento.Infrastructure.Contexts;
+using ProjetoTreinamento.Infrastructure.Repositories;
+using ProjetoTreinamento.Infrastructure.Services.Tarefas;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+
+builder.Services.AddScoped<IChecklistRepository, ChecklistRepository>();
+builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
+builder.Services.AddScoped<IItemRepository, ItemRepository>();
+builder.Services.AddScoped<ITarefaService, TarefaService>();
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddAutoMapper(cfg => { }, typeof(TarefaProfiler));
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "To Do List", Version = "v1" });
+});
+
+builder.Services.AddMediatR(
+    cfg => cfg.RegisterServicesFromAssembly(typeof(GetAllTarefaQueryHandler).Assembly)
+);
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("PermitirAngular",
         policy =>
         {
-            policy.WithOrigins("http://localhost:4200") // A URL do seu Angular
+            policy.WithOrigins("http://localhost:4200")
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
@@ -17,22 +44,29 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+
 
 IConfigurationSection appSettingsConfigurationSection = builder.Configuration.GetSection("AppSettings");
-AppSettings appSetings = appSettingsConfigurationSection.Get<AppSettings>() ?? new();
+AppSettings appSettings = appSettingsConfigurationSection.Get<AppSettings>() ?? new();
 
+IConfigurationSection connectionSettingsSection = builder.Configuration.GetSection("ConnectionSettings");
+ConnectionSettings connectionSettings = connectionSettingsSection.Get<ConnectionSettings>() ?? new();
+builder.Services.AddDbContext<EXETPSContext>(options =>
+                options.UseSqlServer(
+                    connectionSettings.GetConnectionString("ProjetoTreintamento"),
+                    o => o.UseCompatibilityLevel(120)
+                )
+            );
 var app = builder.Build();
 
 app.UseDefaultFiles();
 app.MapStaticAssets();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
 
 app.UseCors("PermitirAngular");
