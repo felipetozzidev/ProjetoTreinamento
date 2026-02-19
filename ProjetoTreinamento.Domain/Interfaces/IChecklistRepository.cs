@@ -8,5 +8,6 @@ namespace ProjetoTreinamento.Domain.Interfaces
         public Task AddAsync(Checklist checklist);
         public Task UpdateAsync(Checklist checklist);
         public Task DeleteAsync(Checklist checklist);
+        public Task<int> GetMaxId();
     }
 }

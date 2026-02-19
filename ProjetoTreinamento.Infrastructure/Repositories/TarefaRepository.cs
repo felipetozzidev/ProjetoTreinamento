@@ -39,11 +39,11 @@ public class TarefaRepository : ITarefaRepository
     {
         _context.Tarefa.Update(tarefa);
         await _context.SaveChangesAsync();
-
     }
 
     public async Task<Tarefa[]> GetAllAsync() => 
         await _context.Tarefa.ToArrayAsync();
 
-    public async Task<int> GetMaxId()=> await _context.Tarefa.MaxAsync(x => x.Id);
+    public async Task<int> GetMaxId() => 
+        await _context.Tarefa.MaxAsync(x => (int?)x.Id) ?? 0;
 }

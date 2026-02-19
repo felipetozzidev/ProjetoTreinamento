@@ -12,8 +12,6 @@ internal class SelectTarefaQueryHandler : IRequestHandler<SelectTarefaQuery, Sel
         _tarefaService = request;
     }
 
-    public async Task<SelectTarefaQueryResponse> Handle(SelectTarefaQuery request, CancellationToken cancellationToken)
-    {
-        return await _tarefaService.MontaSelectQueryResponse(request.Id);
-    }
+    public async Task<SelectTarefaQueryResponse> Handle(SelectTarefaQuery request, CancellationToken cancellationToken)=> 
+        await _tarefaService.MontaSelectQueryResponse(request.Id);
 }

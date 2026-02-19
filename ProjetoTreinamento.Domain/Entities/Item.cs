@@ -18,7 +18,7 @@ public class Item
     //Titulo aqui equivale à Descrição do item
     public string? Titulo { get; private set; }
 
-    public CodigoStatusEnum CodigoStatus { get; private set; }
+    public CodigoStatusEnum CodigoStatus { get; private set; } = CodigoStatusEnum.Pendente;
 
     public DateTime DataCriacao { get; private set; } = DateTime.Now;
 
@@ -33,6 +33,9 @@ public class Item
         IdChecklist = idChecklist;
 
     }
+
+    public void SetId(int id) =>
+        Id = id;
 
     public void AtualizarEntidadeItem(
         string titulo,  

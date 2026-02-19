@@ -1,28 +1,22 @@
 ﻿using MediatR;
-using ProjetoTreinamento.Domain.Entities;
+using ProjetoTreinamento.Application.Interfaces.Services;
 using ProjetoTreinamento.Domain.Interfaces;
 
 namespace ProjetoTreinamento.Application.Commands.Checklists.Add;
 
 internal class AddChecklistCommandHandler : IRequestHandler<AddChecklistCommand>
 {
-    private readonly IChecklistRepository _checklistRepository;
+    private readonly Interfaces.Services.IChecklistService _checklistService;
 
-    public AddChecklistCommandHandler(IChecklistRepository checklistRepository)
+    public AddChecklistCommandHandler(Interfaces.Services.IChecklistService checklistService)
     {
-        _checklistRepository = checklistRepository;
+        _checklistService = checklistService;
     }
 
     public async Task Handle(AddChecklistCommand request, CancellationToken cancellationToken)
     {
-        var checklistEtntity = ConstroiChecklistentity(request);
-        await _checklistRepository.AddAsync(checklistEtntity);
+        await _checklistService.AddAsync(request);
+        
     }
 
-    public static Checklist ConstroiChecklistentity(AddChecklistCommand request) =>
-        new Checklist(
-            request.Titulo,
-            request.Descricao,
-            request.IdTarefa
-        );
 }

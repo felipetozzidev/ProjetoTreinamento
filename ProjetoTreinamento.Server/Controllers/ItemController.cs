@@ -19,28 +19,28 @@ public class ItemController : BaseController
         IMediator mediatorService
     ) : base(mediatorService) { }
 
-    [HttpPost]
+    [HttpPost("CreateItem")]
     public async Task<IActionResult> AddTarefaAsync([FromBody] AddItemCommand request) =>
         await GenerateResponseAsync(
             async () => await MediatorService.Send(request),
             HttpStatusCode.Created
         );
 
-    [HttpDelete("{id}")]
+    [HttpDelete("Delete/{id}")]
     public async Task<IActionResult> DeleteTarefaAsync([FromBody] int id) =>
         await GenerateResponseAsync(
             async () => await MediatorService.Send(new DeleteTarefaCommand(id)),
             HttpStatusCode.OK
         );
 
-    [HttpPut("{id}")]
+    [HttpPut("UpdateItem/{id}")]
     public async Task<IActionResult> UpdateTarefaAsync([FromBody] UpdateItemCommand request) =>
         await GenerateResponseAsync(
             async () => await MediatorService.Send(request),
             HttpStatusCode.Created
         );
 
-    [HttpGet("{id}")]
+    [HttpGet("GetById/{id}")]
     public async Task<IActionResult> SelectTarefaAsync([FromRoute] int id) =>
         await GenerateResponseAsync(
             async () => await MediatorService.Send(new SelectTarefaQuery(id)),

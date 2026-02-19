@@ -17,28 +17,28 @@ public class ChecklistController : BaseController
         IMediator mediatorService
     ) : base(mediatorService) { }
 
-    [HttpPost]
+    [HttpPost("CreateChecklist")]
     public async Task<IActionResult> AddChecklistAsync([FromBody] AddChecklistCommand request) => 
         await GenerateResponseAsync(
             async () => await MediatorService.Send(request),
             HttpStatusCode.Created
         );
 
-    [HttpDelete("{id}")]
+    [HttpDelete("Delete/{id}")]
     public async Task<IActionResult> DeleteChecklistAsync([FromBody] int id) =>
         await GenerateResponseAsync(
             async () => await MediatorService.Send(new DeleteChecklistCommand(id)),
             HttpStatusCode.OK
         );
 
-    [HttpPut]
+    [HttpPut("Update")]
     public async Task<IActionResult> UpdateChecklistAsync([FromBody] UpdateChecklistCommand request) =>
         await GenerateResponseAsync(
             async () => await MediatorService.Send(request),
             HttpStatusCode.Created
         );
 
-    [HttpGet("{id}")]
+    [HttpGet("GetById/{id}")]
     public async Task<IActionResult> SelectChecklistAsync([FromRoute] int id) =>
         await GenerateResponseAsync(
             async () => await MediatorService.Send(new SelectChecklistQuery(id)),

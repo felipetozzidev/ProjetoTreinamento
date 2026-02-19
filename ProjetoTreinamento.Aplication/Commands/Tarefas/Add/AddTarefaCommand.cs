@@ -6,9 +6,6 @@ namespace ProjetoTreinamento.Application.Commands.Tarefas.Add;
 
 public sealed class AddTarefaCommand : IRequest
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
     [JsonPropertyName("descricao")]
     public string Descricao { get; set; } = string.Empty;
 

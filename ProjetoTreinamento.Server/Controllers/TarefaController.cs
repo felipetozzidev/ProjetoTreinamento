@@ -25,21 +25,21 @@ public class TarefaController : BaseController
             HttpStatusCode.Created
         );
 
-    [HttpDelete("{id}")]
+    [HttpDelete("Delete/{id}")]
     public async Task<IActionResult> DeleteTarefaAsync([FromBody] int id) =>
         await GenerateResponseAsync(
             async () => await MediatorService.Send(new DeleteTarefaCommand(id)),
             HttpStatusCode.OK
         );
 
-    [HttpPut("{id}")]
+    [HttpPut("UpdateTarefa/{id}")]
     public async Task<IActionResult> UpdateTarefaAsync([FromBody] UpdateTarefaCommand request) =>
         await GenerateResponseAsync(
             async () => await MediatorService.Send(request),
             HttpStatusCode.Created
         );
 
-    [HttpGet("getById/{id}")]
+    [HttpGet("GetById/{id}")]
     public async Task<IActionResult> SelectTarefaAsync([FromRoute] int id) =>
         await GenerateResponseAsync(
             async () => await MediatorService.Send(new SelectTarefaQuery(id)),

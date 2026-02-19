@@ -31,9 +31,7 @@ public class TarefaService : ITarefaService
         foreach (Tarefa tarefa in tarefas)
         {
             GetAllTarefaQueryResponse mappedResponse = _mapper.Map<GetAllTarefaQueryResponse>(tarefa);
-
             mappedResponse.Status = tarefa.GetSituacao();
-
             response.Add(mappedResponse);
         }
 
@@ -45,10 +43,8 @@ public class TarefaService : ITarefaService
         Tarefa? tarefa = await _tarefaRepository.GetByIdAsync(id);
         if (tarefa == null)
             throw new TarefaNotFoundException();
-
         SelectTarefaQueryResponse mappedResponse = _mapper.Map<SelectTarefaQueryResponse>(tarefa);
         mappedResponse.Status = tarefa.GetSituacao();
-
         return mappedResponse;
 
     }
@@ -57,11 +53,9 @@ public class TarefaService : ITarefaService
         await _tarefaRepository.GetMaxId() + 1;
 
     public async Task AddAsync(AddTarefaCommand addTarefaCommand)
-
     {
-        var tarefaEntity = ConstroiTarefaEntity(addTarefaCommand);
+        Tarefa tarefaEntity = ConstroiTarefaEntity(addTarefaCommand);
         tarefaEntity.SetId(await GetIdInclusao());
-
         await _tarefaRepository.AddAsync(tarefaEntity);
     }
 

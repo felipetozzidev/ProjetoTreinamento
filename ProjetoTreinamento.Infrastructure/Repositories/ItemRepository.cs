@@ -20,7 +20,7 @@ public class ItemRepository : IItemRepository
     public async Task<Item> GetByIdAsync(int id)
     {
         var itemGet = await _context.Item.FirstOrDefaultAsync(c => c.Id == id);
-        return itemGet == null ? throw new TarefaNotFoundException() : itemGet;
+        return itemGet == null ? throw new ItemDoesntExists() : itemGet;
     }
 
     public async Task AddAsync(Item item)
@@ -41,5 +41,6 @@ public class ItemRepository : IItemRepository
 
     }
 
-
+    public async Task<int> GetMaxId() =>
+        await _context.Item.MaxAsync(x => (int?)x.Id) ?? 0;
 }

@@ -16,7 +16,7 @@ internal class UpdateChecklistCommandHandler : IRequestHandler<UpdateChecklistCo
     public async Task Handle(UpdateChecklistCommand request, CancellationToken cancellationToken)
     {
         Checklist checklist = await _checklistRepository.GetByIdAsync(request.Id);
-        checklist.AtualizarEntidadeChecklist(request.Titulo, request.Descricao, request.IdTarefa);
+        checklist.AtualizarEntidadeChecklist(request.Titulo, request.Descricao);
         await _checklistRepository.UpdateAsync(checklist);
     }
 }

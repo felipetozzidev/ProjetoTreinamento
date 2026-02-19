@@ -16,7 +16,7 @@ public sealed class AddItemCommand : IRequest
     public string? Titulo { get; set; }
 
     [JsonPropertyName("codigoStatus")]
-    public CodigoStatusEnum CodigoStatus { get; set; }
+    public CodigoStatusEnum CodigoStatus { get; set; } = CodigoStatusEnum.Pendente;
 
     [JsonPropertyName("dataCriacao")]
     public DateTime DataCriacao { get; set; } = DateTime.Now;

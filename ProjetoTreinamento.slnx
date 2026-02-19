@@ -18,6 +18,7 @@
     <Project Path="ProjetoTreinamento.Infrastructure/ProjetoTreinamento.Infrastructure.csproj" Id="a172eb50-aead-4b6c-b251-d8bfe05ca501" />
   </Folder>
   <Folder Name="/6 - CrossCutting/">
+    <File Path="ProjetoTreinamento.Infrastructure/Services/Tarefas/TarefaService.cs" />
     <Project Path="ProjetoTreinamento.CrossCutting.Exception/ProjetoTreinamento.CrossCutting.Exceptions.csproj" Id="409e7a7b-0a07-474b-9cd8-118ac7754921" />
     <Project Path="ProjetoTreinamento.CrossCutting/ProjetoTreinamento.CrossCutting.csproj" Id="ab5b8dcc-004d-4785-b97d-0e90d88ab0e7" />
   </Folder>

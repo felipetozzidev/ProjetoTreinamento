@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using ProjetoTreinamento.Application.Commands.Checklists.Add;
+using ProjetoTreinamento.Application.Interfaces.Services;
 using ProjetoTreinamento.Domain.Entities;
 using ProjetoTreinamento.Domain.Interfaces;
 
@@ -8,25 +8,16 @@ namespace ProjetoTreinamento.Application.Commands.Itens.Add;
 internal class AddItemCommandHandler : IRequestHandler<AddItemCommand>
 {
 
-    private readonly IItemRepository _itemRepository;
+    private readonly IItemService _itemService;
 
     public AddItemCommandHandler(
-            IItemRepository itemRepository
+            IItemService itemService
     )
     {
-        _itemRepository = itemRepository;
+        _itemService = itemService;
     }
 
-    public async Task Handle(AddItemCommand request, CancellationToken cancellationToken)
-    {
-        var itemEtntity = ConstroiItemEntity(request);
-        await _itemRepository.AddAsync(itemEtntity);
-    }
+    public async Task Handle(AddItemCommand request, CancellationToken cancellationToken) =>
+        await _itemService.AddAsync(request);
 
-    public static Item ConstroiItemEntity(AddItemCommand request) =>
-        new Item(
-            request.Titulo,
-            request.IdTarefa,
-            request.IdChecklist
-        );
 }

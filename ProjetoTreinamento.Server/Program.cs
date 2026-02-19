@@ -8,6 +8,8 @@ using ProjetoTreinamento.CrossCutting.Models;
 using ProjetoTreinamento.Domain.Interfaces;
 using ProjetoTreinamento.Infrastructure.Contexts;
 using ProjetoTreinamento.Infrastructure.Repositories;
+using ProjetoTreinamento.Infrastructure.Services.Checklists;
+using ProjetoTreinamento.Infrastructure.Services.Itens;
 using ProjetoTreinamento.Infrastructure.Services.Tarefas;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,9 +20,12 @@ builder.Services.AddScoped<IChecklistRepository, ChecklistRepository>();
 builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
 builder.Services.AddScoped<ITarefaService, TarefaService>();
+builder.Services.AddScoped<IChecklistService, ChecklistService>();
+builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAutoMapper(cfg => { }, typeof(TarefaProfiler));
+builder.Services.AddAutoMapper(cfg => { }, typeof(ChecklistProfiler));
 
 builder.Services.AddSwaggerGen(c =>
 {
