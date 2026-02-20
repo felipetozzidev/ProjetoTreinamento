@@ -6,7 +6,6 @@ namespace ProjetoTreinamento.Application.Queries.Tarefas.GetAll;
 public class GetAllTarefaQueryHandler : IRequestHandler<GetAllTarefaQuery, GetAllTarefaQueryResponse[]>
 {
     private readonly ITarefaService _tarefaService;
-
     public GetAllTarefaQueryHandler(ITarefaService tarefaService)
     {
         _tarefaService = tarefaService;

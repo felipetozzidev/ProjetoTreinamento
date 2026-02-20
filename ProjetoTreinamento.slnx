@@ -12,6 +12,7 @@
     <Project Path="ProjetoTreinamento.Aplication/ProjetoTreinamento.Application.csproj" Id="8f99ffe1-d5fc-43c3-8cd7-e81a34349f84" />
   </Folder>
   <Folder Name="/4 - Domain/">
+    <File Path="ProjetoTreinamento.Aplication/Queries/Tarefas/Select/SelectTarefaQueryResponse.cs" />
     <Project Path="ProjetoTreinamento.Domain/ProjetoTreinamento.Domain.csproj" />
   </Folder>
   <Folder Name="/5- Infrasctruture/">

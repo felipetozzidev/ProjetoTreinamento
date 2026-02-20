@@ -16,7 +16,11 @@
     <TypeScriptConfiguration Remove="src\app\components\bodies\NovaPasta\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="package-lock.json" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="src\app\components\headers\" />
+    <Folder Include="src\app\components\pages\" />
     <Folder Include="src\app\services\itens\" />
   </ItemGroup>
 </Project>

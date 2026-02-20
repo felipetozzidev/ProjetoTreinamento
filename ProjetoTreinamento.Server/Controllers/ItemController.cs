@@ -33,7 +33,7 @@ public class ItemController : BaseController
             HttpStatusCode.OK
         );
 
-    [HttpPut("UpdateItem/{id}")]
+    [HttpPut("UpdateItem")]
     public async Task<IActionResult> UpdateTarefaAsync([FromBody] UpdateItemCommand request) =>
         await GenerateResponseAsync(
             async () => await MediatorService.Send(request),

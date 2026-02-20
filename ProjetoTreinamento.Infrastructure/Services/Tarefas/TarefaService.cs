@@ -3,6 +3,7 @@ using Azure.Core;
 using ProjetoTreinamento.Application.Commands.Tarefas.Add;
 using ProjetoTreinamento.Application.Interfaces.Services;
 using ProjetoTreinamento.Application.Queries.Tarefas.GetAll;
+using ProjetoTreinamento.Application.Queries.Tarefas.GetAllTarefaChildren;
 using ProjetoTreinamento.Application.Queries.Tarefas.Select;
 using ProjetoTreinamento.CrossCutting.Exceptions.CustomExeptions;
 using ProjetoTreinamento.Domain.Entities;
@@ -65,4 +66,19 @@ public class TarefaService : ITarefaService
             request.Descricao,
             request.Prazo
             );
+
+    public async Task<GetAllTarefaChildrenQueryResponse[]> MontaGetAllTarefaChildrenQueryResponse(int id)
+    {
+        Checklist[] checklistsInTarefa = await _tarefaRepository.GetAllChildrenAsync(id);
+        List<GetAllTarefaChildrenQueryResponse> response = new List<GetAllTarefaChildrenQueryResponse>();
+
+        foreach (Checklist checklist in checklistsInTarefa)
+        {
+            GetAllTarefaChildrenQueryResponse mappedResponse = _mapper.Map<GetAllTarefaChildrenQueryResponse>(checklist);
+            mappedResponse.Status = checklist.GetStatus();
+            response.Add(mappedResponse);
+        }
+
+        return response.ToArray();
+    }
 }

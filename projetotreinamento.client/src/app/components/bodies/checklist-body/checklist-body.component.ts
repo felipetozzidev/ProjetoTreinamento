@@ -1,15 +1,28 @@
-import { Component } from '@angular/core';
-import { MatExpansionModule } from '@angular/material/expansion';
+import { Component, OnInit } from '@angular/core';
+import { TarefaService } from '../../../services/tarefas/tarefa.service';
+import { TarefaType } from '../../../types/TarefaType';
 
 @Component({
   selector: 'app-checklist-body',
   templateUrl: './checklist-body.component.html',
-  standalone: true,
   styleUrl: './checklist-body.component.css',
-  imports: [
-    MatExpansionModule
-  ]
 })
-export class ChecklistBodyComponent {
+export class ChecklistBodyComponent implements OnInit {
 
+  tarefas: TarefaType[] = [
+
+  ];
+
+  constructor(private tarefaService: TarefaService) { }
+
+  ngOnInit(): void {
+    //this.carregarTarefas();
+  }
+
+  //carregarTarefas() {
+  //  this.tarefaService.selectTarefaChildren(id).subscribe({
+  //    next: (dados) => this.tarefas.push(...dados.retorno),
+  //    error: (err) => console.error('Erro ao carregar tarefas', err)
+  //  });
+  //}
 }

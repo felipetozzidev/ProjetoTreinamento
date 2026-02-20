@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ProjetoTreinamento.Application.Queries.Tarefas.GetAll;
+using ProjetoTreinamento.Application.Queries.Tarefas.GetAllTarefaChildren;
 using ProjetoTreinamento.Application.Queries.Tarefas.Select;
 using ProjetoTreinamento.Domain.Entities;
 
@@ -19,6 +20,10 @@ public class TarefaProfiler : Profile
         .ForMember(dest => dest.Descricao, opt => opt.MapFrom(src => src.Descricao))
         .ForMember(dest => dest.Prazo, opt => opt.MapFrom(src => src.Prazo))
         .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
+
+        CreateMap<Checklist, GetAllTarefaChildrenQueryResponse>()
+        .ForMember(dest => dest.Titulo, opt => opt.MapFrom(src => src.Titulo))
+        .ForMember(dest => dest.Descricao, opt => opt.MapFrom(src => src.Descricao));
 
     }
 }

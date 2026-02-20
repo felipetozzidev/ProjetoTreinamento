@@ -46,4 +46,7 @@ public class TarefaRepository : ITarefaRepository
 
     public async Task<int> GetMaxId() => 
         await _context.Tarefa.MaxAsync(x => (int?)x.Id) ?? 0;
+
+    public async Task<Checklist[]> GetAllChildrenAsync(int id) =>
+       await _context.Checklist.Where(c => c.IdTarefa == id).ToArrayAsync();
 }

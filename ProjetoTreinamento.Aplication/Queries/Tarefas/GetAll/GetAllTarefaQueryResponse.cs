@@ -8,6 +8,8 @@ namespace ProjetoTreinamento.Application.Queries.Tarefas.GetAll
 {
     public class GetAllTarefaQueryResponse
     {
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
 
         [JsonPropertyName("titulo")]
         public string Titulo { get; set; } = string.Empty;

@@ -4,6 +4,7 @@ using ProjetoTreinamento.Application.Commands.Tarefas.Add;
 using ProjetoTreinamento.Application.Commands.Tarefas.Delete;
 using ProjetoTreinamento.Application.Commands.Tarefas.Update;
 using ProjetoTreinamento.Application.Queries.Tarefas.GetAll;
+using ProjetoTreinamento.Application.Queries.Tarefas.GetAllTarefaChildren;
 using ProjetoTreinamento.Application.Queries.Tarefas.Select;
 using ProjetoTreinamento.Server.Filters;
 using System.Net;
@@ -51,4 +52,11 @@ public class TarefaController : BaseController
             async () => await MediatorService.Send(request),
             HttpStatusCode.OK
         );
+    [HttpGet("GetAllChildren/{id}")]
+    public async Task<IActionResult> GetAllChildren([FromRoute] int id) =>
+        await GenerateResponseAsync(
+            async () => await MediatorService.Send(new GetAllTarefaChildrenQuery(id)),
+            HttpStatusCode.OK
+        );
+
 }

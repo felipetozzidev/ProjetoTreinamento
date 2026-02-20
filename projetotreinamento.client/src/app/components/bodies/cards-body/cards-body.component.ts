@@ -9,7 +9,9 @@ import { TarefaType } from '../../../types/TarefaType';
 })
 export class CardsBodyComponent implements OnInit {
 
-  tarefas: TarefaType[] = [];
+  tarefas: TarefaType[] = [
+      
+  ];
 
   constructor(private tarefaService: TarefaService) { }
 
@@ -19,8 +21,9 @@ export class CardsBodyComponent implements OnInit {
 
   carregarTarefas() {
     this.tarefaService.listTarefas().subscribe({
-      next: (dados) => this.tarefas = dados,
+      next: (dados) => this.tarefas.push(...dados.retorno),
       error: (err) => console.error('Erro ao carregar tarefas', err)
     });
   }
+  
 }

@@ -15,6 +15,12 @@ import { MarcarTarefaConcluidaComponent } from './components/buttons/marcar-tare
 import { TarefasBodyComponent } from './components/bodies/tarefas-body/tarefas-body.component';
 import { MarcarTarefaConcluidaIndigoComponent } from './components/buttons/marcar-tarefa-concluida-indigo/marcar-tarefa-concluida-indigo.component';
 import { ChecklistBodyComponent } from './components/bodies/checklist-body/checklist-body.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatMenuModule } from '@angular/material/menu';
+import { HomeComponent } from './components/pages/home/home.component';
+import { TarefaComponent } from './components/pages/tarefa/tarefa.component';
+import { MatIconModule } from '@angular/material/icon';
+import { OptionsTarefaButtonComponent } from './components/buttons/options-tarefa-button/options-tarefa-button.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +32,15 @@ import { ChecklistBodyComponent } from './components/bodies/checklist-body/check
     TarefasBodyComponent,
     MarcarTarefaConcluidaIndigoComponent,
     ChecklistBodyComponent,
+    HomeComponent,
+    TarefaComponent,
+    OptionsTarefaButtonComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule,
     AppRoutingModule, CommonModule,
-    FormsModule,
+    FormsModule, MatExpansionModule,
+    MatMenuModule, MatIconModule,
   ],
   providers: [
     provideAnimationsAsync()

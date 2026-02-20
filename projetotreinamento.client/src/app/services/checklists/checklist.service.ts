@@ -9,23 +9,23 @@ import { ChecklistType } from '../../types/ChecklistType';
 export class ChecklistService {
   constructor(private http: HttpClient) { }
 
-  listTarefas(): Observable<ChecklistType[]> {
-    return this.http.get<ChecklistType[]>("api/TarefaController")
+  listChecklist(): Observable<ChecklistType[]> {
+    return this.http.get<ChecklistType[]>(`api/Checklist/GetAll`)
   }
 
-  getTarefa(id: number): Observable<ChecklistType> {
-    return this.http.get<ChecklistType>(`api/TarefaController/${id}`)
+  getChecklist(id: number): Observable<ChecklistType> {
+    return this.http.get<ChecklistType>(`api/Checklist/GetById/${id}`)
   }
 
-  addTarefa(checklist: ChecklistType): Observable<ChecklistType> {
-    return this.http.post<ChecklistType>("api/TarefaController", checklist)
+  addChecklist(checklist: ChecklistType): Observable<ChecklistType> {
+    return this.http.post<ChecklistType>("api/Checklist/CreateTarefa", checklist)
   }
 
-  deleteTarefa(id: number): Observable<void> {
-    return this.http.delete<void>(`api/TarefaController/${id}`)
+  deleteChecklist(id: number): Observable<void> {
+    return this.http.delete<void>(`api/Checklist/Delete/${id}`)
   }
 
-  updateTarefa(id: number, checklist: ChecklistType): Observable<ChecklistType> {
-    return this.http.put<ChecklistType>(`api/TarefaController/${id}`, checklist)
+  updateChecklist(id: number, checklist: ChecklistType): Observable<ChecklistType> {
+    return this.http.put<ChecklistType>(`api/Checklist/UpdateTarefa/${id}`, checklist)
   }
 }
