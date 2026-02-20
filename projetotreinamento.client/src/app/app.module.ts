@@ -12,6 +12,9 @@ import { DefaultHeaderComponent } from './components/headers/default-header/defa
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CardsBodyComponent } from './components/bodies/cards-body/cards-body.component';
 import { MarcarTarefaConcluidaComponent } from './components/buttons/marcar-tarefa-concluida/marcar-tarefa-concluida.component';
+import { TarefasBodyComponent } from './components/bodies/tarefas-body/tarefas-body.component';
+import { MarcarTarefaConcluidaIndigoComponent } from './components/buttons/marcar-tarefa-concluida-indigo/marcar-tarefa-concluida-indigo.component';
+import { ChecklistBodyComponent } from './components/bodies/checklist-body/checklist-body.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { MarcarTarefaConcluidaComponent } from './components/buttons/marcar-tare
     DefaultHeaderComponent,
     CardsBodyComponent,
     MarcarTarefaConcluidaComponent,
+    TarefasBodyComponent,
+    MarcarTarefaConcluidaIndigoComponent,
+    ChecklistBodyComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule,

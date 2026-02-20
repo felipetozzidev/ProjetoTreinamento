@@ -1,0 +1,4 @@
+.concluirTarefa {
+  transition: .2s ease-in-out all;
+  cursor: pointer;
+}
