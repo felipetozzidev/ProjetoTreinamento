@@ -2,7 +2,9 @@
 using Microsoft.Identity.Client;
 using ProjetoTreinamento.Application.Commands.Checklists.Add;
 using ProjetoTreinamento.Application.Interfaces.Services;
+using ProjetoTreinamento.Application.Queries.Checklists.GetAllChildren;
 using ProjetoTreinamento.Application.Queries.Checklists.Select;
+using ProjetoTreinamento.Application.Queries.Tarefas.GetAllTarefaChildren;
 using ProjetoTreinamento.CrossCutting.Exceptions.CustomExeptions;
 using ProjetoTreinamento.Domain.Entities;
 using ProjetoTreinamento.Domain.Interfaces;
@@ -48,5 +50,20 @@ public class ChecklistService : IChecklistService
         SelectChecklistQueryResponse mappedResponse = _mapper.Map<SelectChecklistQueryResponse>(checklist);
         mappedResponse.Status = checklist.GetStatus();
         return mappedResponse;
+    }
+
+    public async Task<GetAllChecklistChildrenQueryResponse[]> MontaGetAllChecklistChildrenQueryResponse(int id)
+    {
+        Item[] itemInChecklist = await _checklistRepository.GetAllChecklistChildren(id);
+        List<GetAllChecklistChildrenQueryResponse> response = new List<GetAllChecklistChildrenQueryResponse>();
+
+        foreach (Item item in itemInChecklist)
+        {
+            GetAllChecklistChildrenQueryResponse mappedResponse = _mapper.Map<GetAllChecklistChildrenQueryResponse>(item);
+            mappedResponse.Status = item.GetStatus();
+            response.Add(mappedResponse);
+        }
+
+        return response.ToArray();
     }
 }

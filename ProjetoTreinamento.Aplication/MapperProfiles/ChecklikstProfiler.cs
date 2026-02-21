@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ProjetoTreinamento.Application.Queries.Checklists.GetAllChildren;
 using ProjetoTreinamento.Application.Queries.Checklists.Select;
 using ProjetoTreinamento.Domain.Entities;
 
@@ -13,6 +14,8 @@ public class ChecklistProfiler : Profile
             .ForMember(dest => dest.IdTarefa, opt => opt.MapFrom(src => src.IdTarefa))
             .ForMember(dest => dest.Descricao, opt => opt.MapFrom(src => src.Descricao));
 
+        CreateMap<Item, GetAllChecklistChildrenQueryResponse>()
+            .ForMember(dest => dest.Titulo, opt => opt.MapFrom(src => src.Titulo));
 
     }
 }

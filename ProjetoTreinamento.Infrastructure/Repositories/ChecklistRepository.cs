@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProjetoTreinamento.Application.Queries.Checklists.GetAllChildren;
 using ProjetoTreinamento.CrossCutting.Exceptions.CustomExeptions;
 using ProjetoTreinamento.Domain.Entities;
 using ProjetoTreinamento.Domain.Interfaces;
@@ -38,6 +39,9 @@ public class ChecklistRepository : IChecklistRepository
         _context.Checklist.Update(checklist);
         await _context.SaveChangesAsync();
     }
+
+    public async Task<Item[]> GetAllChecklistChildren(int id) =>
+        await _context.Item.Where(c => c.IdChecklist == id).ToArrayAsync();
 
     public async Task<int> GetMaxId() =>
         await _context.Checklist.MaxAsync(x => (int?)x.Id) ?? 0;

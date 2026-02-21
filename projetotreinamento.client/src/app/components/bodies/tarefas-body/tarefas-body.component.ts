@@ -20,14 +20,16 @@ export class TarefasBodyComponent {
   constructor(private tarefaService: TarefaService) { }
 
   ngOnInit(): void {
-    this.carregarTarefas();
+    this.carregarChecklists();
   }
 
-  carregarTarefas() {
+  carregarChecklists() {
     this.tarefaService.selectTarefaChildren(this.idTarefa).subscribe({
       next: (dados) => { console.log(dados); this.tarefas.push(...dados.retorno) },
       error: (err) => console.error('Erro ao carregar tarefas', err)
     });
   }
+
+
 
 }

@@ -14,13 +14,13 @@ import { CardsBodyComponent } from './components/bodies/cards-body/cards-body.co
 import { MarcarTarefaConcluidaComponent } from './components/buttons/marcar-tarefa-concluida/marcar-tarefa-concluida.component';
 import { TarefasBodyComponent } from './components/bodies/tarefas-body/tarefas-body.component';
 import { MarcarTarefaConcluidaIndigoComponent } from './components/buttons/marcar-tarefa-concluida-indigo/marcar-tarefa-concluida-indigo.component';
-import { ChecklistBodyComponent } from './components/bodies/checklist-body/checklist-body.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
 import { HomeComponent } from './components/pages/home/home.component';
 import { TarefaComponent } from './components/pages/tarefa/tarefa.component';
 import { MatIconModule } from '@angular/material/icon';
 import { OptionsTarefaButtonComponent } from './components/buttons/options-tarefa-button/options-tarefa-button.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,6 @@ import { OptionsTarefaButtonComponent } from './components/buttons/options-taref
     MarcarTarefaConcluidaComponent,
     TarefasBodyComponent,
     MarcarTarefaConcluidaIndigoComponent,
-    ChecklistBodyComponent,
     HomeComponent,
     TarefaComponent,
     OptionsTarefaButtonComponent,
@@ -41,6 +40,7 @@ import { OptionsTarefaButtonComponent } from './components/buttons/options-taref
     AppRoutingModule, CommonModule,
     FormsModule, MatExpansionModule,
     MatMenuModule, MatIconModule,
+    MatCheckboxModule,
   ],
   providers: [
     provideAnimationsAsync()

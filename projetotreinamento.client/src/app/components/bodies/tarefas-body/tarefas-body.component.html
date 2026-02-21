@@ -17,10 +17,12 @@
     <div class="flex flex-col gap-4">
       <mat-expansion-panel *ngFor="let checklist of tarefas">
         <mat-expansion-panel-header>
-          <mat-panel-title> This is the expansion title </mat-panel-title>
-          <mat-panel-description> This is a summary of the content </mat-panel-description>
+          <mat-panel-title class="line-clamp-1"> {{ checklist.titulo }} </mat-panel-title>
+          <mat-panel-description class="line-clamp-1"> {{ checklist.descricao }} </mat-panel-description>
         </mat-expansion-panel-header>
-        <p>This is the primary content of the panel.</p>
+        <div class="flex w-100">
+            <mat-checkbox></mat-checkbox>
+        </div>
       </mat-expansion-panel>
     </div>
   </section>

@@ -1,4 +1,5 @@
 ﻿using ProjetoTreinamento.Domain.Enums;
+using ProjetoTreinamento.Domain.Shareds.Extensions;
 using System.ComponentModel.DataAnnotations;
 
 namespace ProjetoTreinamento.Domain.Entities;
@@ -16,7 +17,7 @@ public class Item
     public int IdTarefa { get; private set; }
 
     //Titulo aqui equivale à Descrição do item
-    public string? Titulo { get; private set; }
+    public string Titulo { get; private set; } = string.Empty;
 
     public CodigoStatusEnum CodigoStatus { get; private set; } = CodigoStatusEnum.Pendente;
 
@@ -46,5 +47,10 @@ public class Item
         this.Titulo = titulo;
         this.IdTarefa = idTarefa;
         this.IdChecklist = idChecklist;
+    }
+
+    public string GetStatus()
+    {
+        return CodigoStatus.GetDescription();
     }
 }

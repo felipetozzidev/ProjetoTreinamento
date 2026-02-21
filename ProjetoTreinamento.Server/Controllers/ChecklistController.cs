@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProjetoTreinamento.Application.Commands.Checklists.Add;
 using ProjetoTreinamento.Application.Commands.Checklists.Delete;
 using ProjetoTreinamento.Application.Commands.Checklists.Update;
+using ProjetoTreinamento.Application.Queries.Checklists.GetAllChildren;
 using ProjetoTreinamento.Application.Queries.Checklists.Select;
 using ProjetoTreinamento.Server.Filters;
 using System.Net;
@@ -44,4 +45,12 @@ public class ChecklistController : BaseController
             async () => await MediatorService.Send(new SelectChecklistQuery(id)),
             HttpStatusCode.OK
         );
+
+    [HttpGet("GetAllChildren/{id}")]
+    public async Task<IActionResult> GetAllChecklistChildren([FromRoute] int id) =>
+            await GenerateResponseAsync(
+                async () => await MediatorService.Send(new GetAllChecklistChildrenQuery(id)),
+                HttpStatusCode.OK
+            );
+
 }
