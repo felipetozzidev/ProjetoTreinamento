@@ -57,6 +57,9 @@ public class ChecklistService : IChecklistService
         Item[] itemInChecklist = await _checklistRepository.GetAllChecklistChildren(id);
         List<GetAllChecklistChildrenQueryResponse> response = new List<GetAllChecklistChildrenQueryResponse>();
 
+        if (itemInChecklist == null || !itemInChecklist.Any())
+            throw new ItemDoesntExists();
+
         foreach (Item item in itemInChecklist)
         {
             GetAllChecklistChildrenQueryResponse mappedResponse = _mapper.Map<GetAllChecklistChildrenQueryResponse>(item);

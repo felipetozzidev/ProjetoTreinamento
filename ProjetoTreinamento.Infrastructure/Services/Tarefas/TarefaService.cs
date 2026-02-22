@@ -69,7 +69,11 @@ public class TarefaService : ITarefaService
 
     public async Task<GetAllTarefaChildrenQueryResponse[]> MontaGetAllTarefaChildrenQueryResponse(int id)
     {
-        Checklist[] checklistsInTarefa = await _tarefaRepository.GetAllChildrenAsync(id);
+        Checklist[]? checklistsInTarefa = await _tarefaRepository.GetAllChildrenAsync(id);
+
+        if (checklistsInTarefa == null || !checklistsInTarefa.Any())
+            throw new ChecklistNotFoundException();
+
         List<GetAllTarefaChildrenQueryResponse> response = new List<GetAllTarefaChildrenQueryResponse>();
 
         foreach (Checklist checklist in checklistsInTarefa)
