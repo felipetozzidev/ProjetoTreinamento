@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.IdentityModel.Tokens;
 using ProjetoTreinamento.Domain.Entities;
 using ProjetoTreinamento.Domain.Interfaces;
 

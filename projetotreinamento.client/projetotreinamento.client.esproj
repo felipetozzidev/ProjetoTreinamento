@@ -10,12 +10,17 @@
   <ItemGroup>
     <None Remove="NovaPasta1\**" />
     <None Remove="NovaPasta\**" />
+    <None Remove="src\app\components\bodies\NovaPasta\**" />
     <TypeScriptConfiguration Remove="NovaPasta1\**" />
     <TypeScriptConfiguration Remove="NovaPasta\**" />
+    <TypeScriptConfiguration Remove="src\app\components\bodies\NovaPasta\**" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\app\components\bodies\" />
+    <None Remove="package-lock.json" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="src\app\components\headers\" />
+    <Folder Include="src\app\components\pages\" />
     <Folder Include="src\app\services\itens\" />
   </ItemGroup>
 </Project>

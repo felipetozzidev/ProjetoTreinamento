@@ -10,8 +10,4 @@
     <ProjectReference Include="..\ProjetoTreinamento.CrossCutting.Exception\ProjetoTreinamento.CrossCutting.Exceptions.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\Tarefas\Validacoes\" />
-  </ItemGroup>
-
 </Project>

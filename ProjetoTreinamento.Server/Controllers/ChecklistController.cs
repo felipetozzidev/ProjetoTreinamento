@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProjetoTreinamento.Application.Commands.Checklists.Add;
 using ProjetoTreinamento.Application.Commands.Checklists.Delete;
 using ProjetoTreinamento.Application.Commands.Checklists.Update;
+using ProjetoTreinamento.Application.Queries.Checklists.GetAllChildren;
 using ProjetoTreinamento.Application.Queries.Checklists.Select;
 using ProjetoTreinamento.Server.Filters;
 using System.Net;
@@ -13,35 +14,43 @@ namespace ProjetoTreinamento.Server.Controllers;
 [ApiController]
 public class ChecklistController : BaseController
 {
-    protected ChecklistController(
+    public ChecklistController(
         IMediator mediatorService
     ) : base(mediatorService) { }
 
-    [HttpPost]
+    [HttpPost("CreateChecklist")]
     public async Task<IActionResult> AddChecklistAsync([FromBody] AddChecklistCommand request) => 
         await GenerateResponseAsync(
             async () => await MediatorService.Send(request),
             HttpStatusCode.Created
         );
 
-    [HttpDelete("{id}")]
+    [HttpDelete("Delete/{id}")]
     public async Task<IActionResult> DeleteChecklistAsync([FromBody] int id) =>
         await GenerateResponseAsync(
             async () => await MediatorService.Send(new DeleteChecklistCommand(id)),
             HttpStatusCode.OK
         );
 
-    [HttpPut]
+    [HttpPut("Update")]
     public async Task<IActionResult> UpdateChecklistAsync([FromBody] UpdateChecklistCommand request) =>
         await GenerateResponseAsync(
             async () => await MediatorService.Send(request),
             HttpStatusCode.Created
         );
 
-    [HttpGet("{id}")]
+    [HttpGet("GetById/{id}")]
     public async Task<IActionResult> SelectChecklistAsync([FromRoute] int id) =>
         await GenerateResponseAsync(
-            async () => await MediatorService.Send(new SelectChecklistCommand(id)),
+            async () => await MediatorService.Send(new SelectChecklistQuery(id)),
             HttpStatusCode.OK
         );
+
+    [HttpGet("GetAllChildren/{id}")]
+    public async Task<IActionResult> GetAllChecklistChildren([FromRoute] int id) =>
+            await GenerateResponseAsync(
+                async () => await MediatorService.Send(new GetAllChecklistChildrenQuery(id)),
+                HttpStatusCode.OK
+            );
+
 }

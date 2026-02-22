@@ -4,9 +4,12 @@ namespace ProjetoTreinamento.Domain.Interfaces
 {
     public interface ITarefaRepository
     {
-        public Task<Tarefa> GetByIdAsync(int id);
-        public Task AddAsync(Tarefa tarefa);
-        public Task UpdateAsync(Tarefa tarefa);
-        public Task DeleteAsync(Tarefa tarefa);
+        Task<Tarefa?> GetByIdAsync(int id);
+        Task AddAsync(Tarefa tarefa);
+        Task UpdateAsync(Tarefa tarefa);
+        Task DeleteAsync(Tarefa tarefa);
+        Task<Tarefa[]> GetAllAsync();
+        Task<int> GetMaxId();
+        Task<Checklist[]> GetAllChildrenAsync(int id);
     }
 }

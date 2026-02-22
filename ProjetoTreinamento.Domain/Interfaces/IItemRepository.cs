@@ -8,5 +8,6 @@ namespace ProjetoTreinamento.Domain.Interfaces
         public Task AddAsync(Item item);
         public Task UpdateAsync(Item item);
         public Task DeleteAsync(Item item);
+        public Task<int> GetMaxId();
     }
 }

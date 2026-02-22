@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ChecklistType } from '../../types/ChecklistType';
+import { APIResponse } from '../../types/APIResponse';
+import { ItemType } from '../../types/ItemType';
 
 @Injectable({
   providedIn: 'root'
@@ -9,23 +11,27 @@ import { ChecklistType } from '../../types/ChecklistType';
 export class ChecklistService {
   constructor(private http: HttpClient) { }
 
-  listTarefas(): Observable<ChecklistType[]> {
-    return this.http.get<ChecklistType[]>("api/TarefaController")
+  listChecklist(): Observable<APIResponse<ChecklistType[]>> {
+    return this.http.get<APIResponse<ChecklistType[]>>(`api/Checklist/GetAll`)
   }
 
-  getTarefa(id: number): Observable<ChecklistType> {
-    return this.http.get<ChecklistType>(`api/TarefaController/${id}`)
+  getChecklist(id: number): Observable<APIResponse<ChecklistType>> {
+    return this.http.get<APIResponse<ChecklistType>>(`api/Checklist/GetById/${id}`)
   }
 
-  addTarefa(checklist: ChecklistType): Observable<ChecklistType> {
-    return this.http.post<ChecklistType>("api/TarefaController", checklist)
+  addChecklist(checklist: ChecklistType): Observable<APIResponse<ChecklistType>> {
+    return this.http.post<APIResponse<ChecklistType>>("api/Checklist/CreateTarefa", checklist)
   }
 
-  deleteTarefa(id: number): Observable<void> {
-    return this.http.delete<void>(`api/TarefaController/${id}`)
+  deleteChecklist(id: number): Observable<void> {
+    return this.http.delete<void>(`api/Checklist/Delete/${id}`)
   }
 
-  updateTarefa(id: number, checklist: ChecklistType): Observable<ChecklistType> {
-    return this.http.put<ChecklistType>(`api/TarefaController/${id}`, checklist)
+  updateChecklist(id: number, checklist: ChecklistType): Observable<APIResponse<ChecklistType>> {
+    return this.http.put<APIResponse<ChecklistType>>(`api/Checklist/UpdateTarefa/${id}`, checklist)
+  }
+
+  listItemsChecklist(id: number): Observable<APIResponse<ItemType[]>> {
+    return this.http.get<APIResponse<ItemType[]>>(`api/checklist/GetAllChildren/${id}`)
   }
 }

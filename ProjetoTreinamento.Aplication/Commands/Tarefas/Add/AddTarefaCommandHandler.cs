@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using ProjetoTreinamento.Application.Interfaces.Services;
 using ProjetoTreinamento.Domain.Entities;
 using ProjetoTreinamento.Domain.Interfaces;
 
@@ -6,26 +7,16 @@ namespace ProjetoTreinamento.Application.Commands.Tarefas.Add;
 
 public sealed class AddTarefaCommandHandler : IRequestHandler<AddTarefaCommand>
 {
-    private readonly ITarefaRepository _tarefaRepository;
+    private readonly ITarefaService _tarefaService;
     public AddTarefaCommandHandler(
-        ITarefaRepository tarefaRepository
+        ITarefaService tarefaService
     )
     {
-        _tarefaRepository = tarefaRepository;
+        _tarefaService = tarefaService;
     }
 
-    public async Task Handle(AddTarefaCommand request, CancellationToken cancellationToken)
-    {
-        var tarefaEntity = ConstroiTarefaEntity(request);
+    public async Task Handle(AddTarefaCommand request, CancellationToken cancellationToken) =>  await _tarefaService.AddAsync(request);
+    
 
-        await _tarefaRepository.AddAsync(tarefaEntity);
-    }
-
-    private static Tarefa ConstroiTarefaEntity(AddTarefaCommand request) =>
-         new Tarefa(
-            request.Titulo,
-            request.Descricao,
-            request.Prazo
-            );
     
 }

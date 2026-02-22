@@ -1,0 +1,29 @@
+<main class="flex justify-center items-center mt-8">
+  <section class="w-[70%] flex flex-col gap-6">
+    <header class="flex justify-between items-center">
+      <h1 class="text-3xl">
+        Teste de Titulo
+      </h1>
+      <div>
+        <app-marcar-tarefa-concluida-indigo></app-marcar-tarefa-concluida-indigo>
+      </div>
+    </header>
+    <hr />
+    <div class="">
+      <p class="text-basic text-gray-500 text-left">
+        Teste de descrição grande Teste de descrição grandeTeste de descrição grandeTeste de descrição grandeTeste de descrição grandeTeste de descrição grandeTeste de descrição grandeTeste de descrição grandeTeste de descrição grandeTeste de descrição grande
+      </p>
+    </div>
+    <div class="flex flex-col gap-4">
+      <mat-expansion-panel *ngFor="let checklist of checklists" [(ngModel)] ="checklist.id">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="line-clamp-1"> {{ checklist.titulo }} </mat-panel-title>
+          <mat-panel-description class="line-clamp-1"> {{ checklist.descricao }} </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="flex w-100" *ngFor="let item of items">
+            <mat-checkbox></mat-checkbox>
+        </div>
+      </mat-expansion-panel>
+    </div>
+  </section>
+</main>

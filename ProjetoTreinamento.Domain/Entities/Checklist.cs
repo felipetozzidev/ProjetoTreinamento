@@ -12,7 +12,7 @@ public class Checklist
     public int Id { get; private set; }
     public string Titulo { get; private set; } = string.Empty;
     public string Descricao { get; private set; } = "Descrição padrão";
-    public CodigoStatusEnum CodigoStatus { get; private set; } = 0;
+    public CodigoStatusEnum CodigoStatus { get; private set; } = CodigoStatusEnum.Pendente;
     public DateTime DataCriacao { get; private set; } = DateTime.Now;
     public int IdTarefa { get; private set; }
     
@@ -30,13 +30,21 @@ public class Checklist
 
     public void AtualizarEntidadeChecklist(
         string titulo,
-        string descricao,
-        int idTarefa
+        string descricao
     )
     {
         this.Titulo = titulo;
         this.Descricao = descricao; 
-        this.IdTarefa = idTarefa;
         
+    }
+
+    public void SetId(int id)
+    {
+        Id = id;
+    }
+
+    public string GetStatus()
+    {
+        return CodigoStatus.GetDescription();
     }
 }

@@ -26,11 +26,6 @@ namespace ProjetoTreinamento.Infrastructure.Contexts
 
         }
 
-        internal async Task<Tarefa> FirstOrDefaultAsync(Func<object, bool> value)
-        {
-            throw new NotImplementedException();
-        }
-
         public DbSet<Item> Item { get; set; }
         public DbSet<Tarefa> Tarefa { get; set; }
         public DbSet<Checklist> Checklist { get; set; }

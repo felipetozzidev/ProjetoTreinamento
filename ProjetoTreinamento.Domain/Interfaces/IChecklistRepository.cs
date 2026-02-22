@@ -4,9 +4,11 @@ namespace ProjetoTreinamento.Domain.Interfaces
 {
     public interface IChecklistRepository
     {
-        public Task<Checklist> GetByIdAsync(int id);
-        public Task AddAsync(Checklist checklist);
-        public Task UpdateAsync(Checklist checklist);
-        public Task DeleteAsync(Checklist checklist);
+        Task<Checklist> GetByIdAsync(int id);
+        Task AddAsync(Checklist checklist);
+        Task UpdateAsync(Checklist checklist);
+        Task DeleteAsync(Checklist checklist);
+        Task<int> GetMaxId();
+        Task<Item[]> GetAllChecklistChildren(int id);
     }
 }
