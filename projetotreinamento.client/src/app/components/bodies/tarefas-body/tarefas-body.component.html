@@ -15,15 +15,17 @@
       </p>
     </div>
     <div class="flex flex-col gap-4">
-      <mat-expansion-panel *ngFor="let checklist of checklists" [(ngModel)] ="checklist.id">
+      <div *ngFor="let checklist of checklists" #card [id]="checklist.id">
+      <mat-expansion-panel >
         <mat-expansion-panel-header>
           <mat-panel-title class="line-clamp-1"> {{ checklist.titulo }} </mat-panel-title>
           <mat-panel-description class="line-clamp-1"> {{ checklist.descricao }} </mat-panel-description>
         </mat-expansion-panel-header>
-        <div class="flex w-100" *ngFor="let item of items">
+        <div class="flex w-100" *ngFor="let item of itemsPorChecklist[checklist.id] || []">
             <mat-checkbox></mat-checkbox>
         </div>
       </mat-expansion-panel>
+      </div>
     </div>
   </section>
 </main>
